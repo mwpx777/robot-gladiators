@@ -4,15 +4,24 @@ var playerAttack = 10;
 var playerMoney = 10;
 
 // You can also log multiple values at once like this
-console.log(playerName, playerAttack, playerHealth);
+//console.log(playerName, playerAttack, playerHealth, playerMoney);
 
-var enemyName = "Flexo";
+//array of enemy names, each name is a string
+var enemyNames = ["Flexo", "Clamps", "Furious George"];
 var enemyHealth = 50;
 var enemyAttack = 12;
 
+for(var i = 0; i < enemyNames.length; i++) {
+    console.log(enemyNames[i]);
+    console.log(i);
+    console.log(enemyNames[i] + " is at " + i + " index");
+  }
+
+
 window.alert("Welcome to Robot Gladiators you bitches!");
 
-var fight = function() {
+var fight = function(enemyName) {
+    //fight function statements
     var promptFight = window.prompt("Would you like to FIGHT or SKIP this battle?  Type 'FIGHT' to continue, or 'SKIP' to chicken out.");
     console.log(promptFight);
 
@@ -31,7 +40,7 @@ var fight = function() {
             window.alert(enemyName + " is wasted.");
         }
         else {
-            window.alert(enemyName + " still has " + enemyHealth + " health remaining.");
+            window.alert(enemyName + " has " + enemyHealth + " health remaining.");
         }
         //enemy attack
         playerHealth = playerHealth-enemyAttack;
@@ -68,7 +77,13 @@ var fight = function() {
     }
 
 }
-
+// Game States
+// "WIN" - Player robot has defeated all enemy-robots
+//      *fight all enemy robots
+//      *defeate each enemy robot
+// "LOSE" - Player robot's health is zero or less
  
 
-fight();
+for(var i = 0; i <enemyNames.length; i++) {
+    fight(enemyNames[i]);
+}
