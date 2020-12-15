@@ -1,8 +1,11 @@
-//var playerName = window.prompt("What is your robot's name?");
-//var playerHealth = 100;
-//var playerAttack = 100;
-//var playerMoney = 10;
 
+var getPlayerName = function(){
+  var name = "";
+  while(name === "" || name === null){
+    name = prompt('What is your robots name?');
+  }
+    console.log('Your players name is ' + name)
+};
 //random number logic
 var randomNumber = function(){
   var value = Math.floor(Math.random() * 21) + 40;
@@ -11,7 +14,7 @@ var randomNumber = function(){
 };
 //This is an object!!
 var playerInfo = {
-  name: window.prompt("What is your robot's name?"),
+  name: getPlayerName(),
   health: 100,
   attack: 10,
   money: 10,
@@ -29,13 +32,8 @@ var playerInfo = {
     this.money -=7;
   }
 };
-// You can also log multiple values at once like this
-//console.log(playerName, playerAttack, playerHealth, playerMoney);
+//Object end
 
-//array of enemy names, each name is a string
-//var enemyNames = ["Flexo", "Clamps", "Furious George"];
-//var enemyHealth = 50;
-//var enemyAttack = 12;
 
 //This is an object!!
 var enemyInfo = [ 
@@ -55,6 +53,7 @@ var enemyInfo = [
     health:50
   }
 ];
+//Object End
 
 for(var i = 0; i < enemyInfo.length; i++) {
     console.log(enemyInfo[i]);                            //might need obj here
@@ -227,6 +226,7 @@ var startGame = function(){
          if(playerInfo.health > 0){
             // let player know what round they are in, remember that arrays start at 0 so it needs to have 1 added to it
             window.alert("Welcome to Robot Gladiators! Round " + (i + 1));
+            
         
             // pick new enemy to fight based on the index of the enemy.names array
             var pickedEnemyObj = enemyInfo[i];
