@@ -4,7 +4,8 @@ var getPlayerName = function(){
   while(name === "" || name === null){
     name = prompt('What is your robots name?');
   }
-    console.log('Your players name is ' + name)
+    console.log('Your players name is ' + name);
+    return name;
 };
 //random number logic
 var randomNumber = function(){
@@ -100,19 +101,19 @@ var fight = function(enemy) {
             
               // check enemy's health
               if (enemyInfo.health <= 0) {
-                window.alert(enemy.name + ' has died!');
+                window.alert(enemyInfo.name + ' has died!');
           
                 // award player money for winning
                 playerInfo.money = playerInfo.money + 20;
                 console.log(playerInfo.money)
-                window.alert(playerInfo.name + " has defeated " + enemy.name + " and now has " + playerInfo.money);
+                window.alert(playerInfo.name + " has defeated " + enemyInfo.name + " and now has " + playerInfo.money);
                // window.alert(playername + "has defeated" + enemy.name + " now has" + playerMoney);
           
                 // leave while() loop since enemy is dead
                 break;
 
               } else {
-                window.alert(enemy.name + ' still has ' + enemyInfo.health + ' health left.');
+                window.alert(enemyInfo.name + ' still has ' + enemyInfo.health + ' health left.');
               }
           
               // remove players's health by subtracting the amount set in the enemy.attack variable
@@ -120,7 +121,7 @@ var fight = function(enemy) {
               playerInfo.health = Math.max(0,playerInfo.health - damage);
               console.log(enemy.name + " damage attack was " + damage);
               console.log(
-                enemy.name + ' attacked ' + playerInfo.name + '. ' + playerInfo.name + ' now has ' + playerInfo.health + ' health remaining.'
+                enemyInfo.name + ' attacked ' + playerInfo.name + '. ' + playerInfo.name + ' now has ' + playerInfo.health + ' health remaining.'
               );
           
               // check player's health
@@ -198,7 +199,7 @@ var shop = function(){
             case "LEAVE":
             case "leave":{
                 //leave store
-                window.alert("Leaving the store.");
+                window.alert( playerInfo.name + " left the store.");
                 
                 //do nothing so function will end
                 break;}
