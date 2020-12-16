@@ -26,7 +26,7 @@ var playerInfo = {
   },
   refillHealth: function(){
     this.health +=20;
-    this.money -+7;
+    this.money -=7;
   },
   upgradeAttack :function(){
     this.attack +=6;
@@ -120,7 +120,7 @@ var fight = function(enemy) {
                 window.alert(enemyInfo.name + ' has died!');
           
                 // award player money for winning
-                playerInfo.money = playerInfo.money + 20;
+                playerInfo.money = (playerInfo.money + 20);
                 console.log(playerInfo.money)
                 window.alert(playerInfo.name + " has defeated " + enemyInfo.name + " and now has " + playerInfo.money);
                // window.alert(playername + "has defeated" + enemy.name + " now has" + playerMoney);
@@ -182,14 +182,15 @@ var shop = function(){
 
     //ask player what they would like to do
     var shopOptionPrompt = window.prompt (
-        "Would you like to REFILL your health 20 for $7, UPGRADE your attack 10 for $7, or LEAVE the store? Please choose one: 'REFILL', 'UPGRADE', or 'LEAVE' to make a choice.");
+        "Type '1' to REFILL your health 20 for $7, type '2' to UPGRADE your attack 10 for $7, or '3' to LEAVE the store? Please choose one: 'REFILL', 'UPGRADE', or 'LEAVE' to make a choice.");
+       //change number which is a string to an integer
+        shopOptionPrompt = parseInt(shopOptionPrompt);
 
         switch (shopOptionPrompt){
-            case "REFILL":
-            case "refill":{
-                if (this.money >= 7){
+            case 1:{
+                if (this.money > 7){
                 //refill health 10 for $7
-                window.alert("Refill health 20 for $7");
+                window.alert("You refilled your health 20");
                 playerInfo.refillHealth();
                 break;
 
@@ -198,11 +199,10 @@ var shop = function(){
                 }
                 break;}
 
-            case "UPGRADE":
-            case "upgrade":{
-                if (this.money >= 7){
+            case 2:{
+                if (this.money > 7){
                 //upgrade attack 10 for $7
-                window.alert("Upgrade attack 6 for $7");
+                window.alert("You upgraded your attack 10 ");
                 playerInfo.upgradeAttack();
                 break;}
                 
@@ -212,8 +212,7 @@ var shop = function(){
                 }
                 break;}
             
-            case "LEAVE":
-            case "leave":{
+            case 3:{
                 //leave store
                 window.alert( playerInfo.name + " left the store.");
                 
