@@ -62,42 +62,58 @@ for(var i = 0; i < enemyInfo.length; i++) {
     console.log(enemyInfo[i] + " is at " + i + " index"); //might need obj here
   }
 
+var fightOrSkip = function() {
+    // ask player if they'd like to fight or skip using fightOrSkip function
+    var promptFight = window.prompt('Would you like FIGHT or SKIP this battle? Enter "FIGHT" or "SKIP" to choose.');
+   
+    //changes repsonse to all lowercase
+    promptFight = promptFight.toLowerCase();
+
+    if (promptFight === "fight"){
+      window.alert("Lets get ready to rumble");
+    }
+
+    if (!promptFight){
+        window.alert("You need to provide a valid answer! Please try again.");
+        return fightOrSkip();
+    }
+  
+    // if player picks "skip" confirm and then stop the loop
+    
+    if (promptFight === "skip") {
+      // confirm player wants to skip
+      var confirmSkip = window.confirm("Are you sure you'd like to quit?");
+  
+      // if yes (true), leave fight
+      if (confirmSkip) {
+        window.alert(playerInfo.name + " has decided to skip this fight. Goodbye!");
+        // subtract money from playerMoney for skipping
+        playerInfo.money = Math.max(0,playerInfo.money - 10);
+        //return true if player wants to leave
+        return true;
+        
+      }
+    }
+      return false;
+  };
 
  //GAME LOGIC    
 var fight = function(enemy) { 
     console.log(enemyInfo.name);
      // repeat and execute as long as the enemy-robot is alive 
-    while(enemyInfo.health> 0 && playerInfo.health > 0) {
-      
+    while(enemyInfo.health> 0 && playerInfo.health > 0) { 
+          //ask player if they want to fight or skip using fight or skip function
+          if (fightOrSkip()){
+            //if true leave fight by breaking the loop
+            break;}
             
-            // ask player if they'd liked to fight or run
-              var promptFight = window.prompt('Would you like FIGHT or SKIP this battle? Enter "FIGHT" or "SKIP" to choose.');
-          
-              // if player picks "skip" confirm and then stop the loop
-              if (promptFight === "skip" || promptFight === "SKIP") {
-                // confirm player wants to skip
-                var confirmSkip = window.confirm("Are you sure you'd like to quit?");
-          
-                // if yes (true), leave fight
-                if (confirmSkip) {
-                  window.alert(playerName + ' has decided to skip this fight. Goodbye!');
-                  // subtract money from playerMoney for skipping
-                  playerInfo.money = playerInfo.money - 10;
-                  window.alert(playerInfo.name + " just lost 10 bucks for skipping the fight");
-                  console.log(playerInfo.name, playerInfo.money);
-                  break;
-                }
-              }
-          
-              // remove enemy's health by subtracting the amount set in the playerAttack variable
-              if (promptFight === "FIGHT" || promptFight === "fight"){
-                //generate random damage value based on players attack power
                   var damage = randomNumber(playerInfo.attack -3, playerInfo.attack);
                   enemyInfo.health = Math.max(0,enemyInfo.health - damage);
                   console.log(playerInfo.name + " damage attack was " + damage);
                   console.log(
                   playerInfo.name + ' attacked ' + enemy.name + '. ' + enemy.name + ' now has ' + enemyInfo.health + ' health remaining.'
-                  );}
+                  );
+                
             
               // check enemy's health
               if (enemyInfo.health <= 0) {
@@ -134,7 +150,7 @@ var fight = function(enemy) {
                 fight();
               }
     }
-};
+  }
 //GAME LOGIC END
 
 // function to end the entire game
@@ -221,6 +237,7 @@ var startGame = function(){
     //reset player stats
     playerInfo.reset();
     
+  fightOrSkip();
 
     for (var i = 0; i < enemyInfo.length; i++) {
       
@@ -234,7 +251,7 @@ var startGame = function(){
             console.log(pickedEnemyObj);
         
             // reset enemyInfo.health before starting new fight
-            pickedEnemyObj.health = randomNumber(40, 50); 
+            pickedEnemyObj.health = randomNumber(10, 30); 
             
         
             // use debugger to pause script from running and check what's going on at that moment in the code
