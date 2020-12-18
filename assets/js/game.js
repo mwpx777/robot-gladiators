@@ -162,6 +162,22 @@ var endGame = function() {
     else {
       window.alert("You've lost your robot in battle.");
     }
+    //highscore setting and alert
+    window.alert('Your score is ' + playerInfo.money)
+    var highscore = (localStorage.getItem('highscore'))
+      if ('highscore'===null){
+        highscore = 0;
+        //or highscore = highscore || 0;
+      }
+
+
+    if (playerInfo.money>highscore){
+      localStorage.setItem('highscore', 'playerInfo.money')
+      localStorage.setItem('name', 'playerInfo.name')
+      alert('You have the new high score of ' + playerInfo.money)
+    } else{
+      alert('You did not beat the high score, please try again!')
+    }
     // ask player if they'd like to play again
     var playAgainConfirm = window.confirm("Would you like to play again?");
 
@@ -171,6 +187,10 @@ var endGame = function() {
     } 
     else {
     window.alert("Thank you for playing Robot Gladiators! Come back soon!");
+
+    
+    
+
     startGame();
     }
   }
