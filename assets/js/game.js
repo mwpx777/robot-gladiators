@@ -120,7 +120,7 @@ var fight = function(enemy) {
                 window.alert(enemyInfo.name + ' has died!');
           
                 // award player money for winning
-                playerInfo.money = (playerInfo.money + 20);
+                playerInfo.money = playerInfo.money + 20;
                 console.log(playerInfo.money)
                 window.alert(playerInfo.name + " has defeated " + enemyInfo.name + " and now has " + playerInfo.money);
                // window.alert(playername + "has defeated" + enemy.name + " now has" + playerMoney);
@@ -188,7 +188,7 @@ var shop = function(){
 
         switch (shopOptionPrompt){
             case 1:{
-                if (this.money > 7){
+                if (this.money >= 7){
                 //refill health 10 for $7
                 window.alert("You refilled your health 20");
                 playerInfo.refillHealth();
@@ -200,7 +200,7 @@ var shop = function(){
                 break;}
 
             case 2:{
-                if (this.money > 7){
+                if (this.money >= 7){
                 //upgrade attack 10 for $7
                 window.alert("You upgraded your attack 10 ");
                 playerInfo.upgradeAttack();
